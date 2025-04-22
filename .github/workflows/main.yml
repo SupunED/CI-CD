@@ -73,6 +73,12 @@ jobs:
          with:
             java-version: 17
 
+       - name: Recreate google-services.json
+         run: |
+          mkdir -p app/src/debug
+          echo "$GOOGLE_SERVICES_JSON_B64" | base64 --decode > app/src/debug/google-services.json
+
+
        - name: Grant execute permission for gradlew
          run: chmod +x gradlew
 
