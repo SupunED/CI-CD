@@ -17,6 +17,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      -name: Grant permission for gradlew
+        run: chmod +x gradlew
+
       - name: Run Lint
         run: ./gradlew lintDebug
       
