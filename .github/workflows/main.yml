@@ -10,23 +10,26 @@ on:
 
 jobs:
   Lint:
-
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Grant permission for gradlew
+      - name: Recreate google-services.json
+        run: |
+          echo "$GOOGLE_SERVICES_JSON_B64" | base64 --decode > app/google-services.json
+        env:
+          GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
+
+      - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Run Lint
         run: ./gradlew lintDebug
-      
-      - name: Upload html test report
+
+      - name: Upload Lint Report
         uses: actions/upload-artifact@v4
         with:
-          name: index.html
+          name: lint-report
           path: app/build/reports/lint-results-debug.html
-
-
