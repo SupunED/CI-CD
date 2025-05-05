@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: Air Quality API
+  version: 1.0.0
+  description: Gets AQI data using API Ninjas
+paths:
+  /v1/airquality:
+    get:
+      summary: Get AQI for a location
+      parameters:
+        - in: query
+          name: city
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                city: Delhi
+                AQI: 128
+                PM2.5: 80
+                PM10: 110
+                status: Moderate

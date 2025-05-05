@@ -1,0 +1,28 @@
+openapi: 3.0.3
+info:
+  title: Nutrition API
+  version: 1.0.0
+  description: Provides nutritional info using CalorieNinjas
+paths:
+  /v1/nutrition:
+    get:
+      summary: Get nutrition info for a food item
+      parameters:
+        - in: query
+          name: query
+          schema:
+            type: string
+          required: true
+          description: Food name (e.g., "apple")
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                items:
+                  - name: apple
+                    calories: 52
+                    protein: 0.3g
+                    carbs: 14g
+                    fat: 0.2g
